@@ -69,32 +69,32 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.86.Final</version>
+            <version>4.1.109.Final</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.tencent.kona/kona-provider -->
         <dependency>
             <groupId>com.tencent.kona</groupId>
             <artifactId>kona-provider</artifactId>
-            <version>1.0.11</version>
+            <version>1.0.13</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.tencent.kona/kona-crypto -->
         <dependency>
             <groupId>com.tencent.kona</groupId>
             <artifactId>kona-crypto</artifactId>
-            <version>1.0.11</version>
+            <version>1.0.13</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.tencent.kona/kona-pkix -->
         <dependency>
             <groupId>com.tencent.kona</groupId>
             <artifactId>kona-pkix</artifactId>
-            <version>1.0.11</version>
+            <version>1.0.13</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.tencent.kona/kona-ssl -->
         <dependency>
             <groupId>com.tencent.kona</groupId>
             <artifactId>kona-ssl</artifactId>
-            <version>1.0.11</version>
+            <version>1.0.13</version>
         </dependency>
 
 
