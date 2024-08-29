@@ -1,13 +1,15 @@
 package com.nrxt.comm.client.handlers;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
+public class NettyClientHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, String msg) {
         // 处理从服务器接收到的消息
         System.out.println("Received message from server: " + msg);
     }
@@ -16,6 +18,11 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
     public void channelActive(ChannelHandlerContext ctx) {
         // 当连接建立时调用
         System.out.println("Connected to server: " + ctx.channel().remoteAddress());
+        String response = "Hello from client!";
+        ByteBuf out = Unpooled.copiedBuffer(response.getBytes());
+
+        // 通过 ChannelHandlerContext 发送消息
+        ctx.writeAndFlush(out);
     }
 
     @Override

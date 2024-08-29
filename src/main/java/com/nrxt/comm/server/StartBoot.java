@@ -12,8 +12,11 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -55,13 +58,13 @@ public class StartBoot{
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //加入SSL管理器
                             ch.pipeline().addLast(new TLCPContext().newHandler(ch.alloc()));
-                            // 在管道中加入处理器
-                            ch.pipeline().addLast(new StringDecoder());
-                            ch.pipeline().addLast(new StringEncoder());
+                            ch.pipeline().addLast(new LoggingHandler(LogLevel.INFO)); // 添加日志处理器
+//                            ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+//                            ch.pipeline().addLast(new StringDecoder());
+//                            ch.pipeline().addLast(new StringEncoder());
                             ch.pipeline().addLast(new NettyServerHandler());
                         }
                     })
-                    .option(ChannelOption.SO_BACKLOG, 128) // 设置TCP连接等待队列的大小
                     .childOption(ChannelOption.SO_KEEPALIVE, true); // 保持连接
 
             // 绑定端口并启动服务器
